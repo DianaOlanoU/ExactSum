@@ -13,27 +13,28 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
         
-        String finalResult="";
         String lineBooks=br.readLine();
         
         while(lineBooks!=null){
             int maxBooks=Integer.parseInt(lineBooks);
+            
             int[] priceBooks=new int[maxBooks];
             String[] booksPriceParts=br.readLine().split(" ");
             
-            for(int i=0;i<booksPriceParts.length;i++){
-                priceBooks[i]=Integer.parseInt(booksPriceParts[i]);
+            if(maxBooks>=2 && maxBooks<=10000){
+                for(int i=0;i<booksPriceParts.length;i++){
+                    priceBooks[i]=Integer.parseInt(booksPriceParts[i]);
+                }
             }
             
             int money=Integer.parseInt(br.readLine());
             Arrays.sort(priceBooks);
             int[] prices=searchBestPrices(priceBooks,money);
            
-           finalResult+="Peter should buy books whose prices are "+prices[0]+" and "+prices[1]+"\n\n";
+           bw.write("Peter should buy books whose prices are "+prices[0]+" and "+prices[1]+".\n\n");
            lineBooks=br.readLine();
            lineBooks=br.readLine();
         }
-        bw.write(finalResult);
         br.close();
         bw.close();
     }
